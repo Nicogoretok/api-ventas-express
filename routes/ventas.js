@@ -16,11 +16,11 @@ routes.get('/consolidado', async (req, res) => {
     }
 
     //Se ejecuta el SP en DB
-    const [rows] = await pool.query('CALL db_ventas_tech (?, ?)',[sucural, anio]);
+    const [rows] = await pool.query('CALL db_ventas_tech (?, ?)',[sucursal, anio]);
 
     res.status(200).json({
-        status: 'succes',
-        total_registros: rows[0] ? rows[0].lenght : 0,
+        status: 'success',
+        total_registros: rows[0] ? rows[0].length : 0,
         data: rows[0]
     })
 
@@ -71,7 +71,7 @@ routes.post('/consolidado', async (req, res) => {
             });
         }
 
-        await pool.query('CALL db_registar_ventas(?, ?, ?, ?)', [
+        await pool.query('CALL db_registrar_venta(?, ?, ?, ?)', [
             id_producto,
             id_cliente,
             cantidad,
@@ -92,4 +92,4 @@ routes.post('/consolidado', async (req, res) => {
     }
 });
 
-export default Router
+export default routes
